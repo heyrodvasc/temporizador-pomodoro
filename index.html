@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#17191f" />
+    <title>Tempo - Temporizador de foco</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="timer-card" id="timerCard" aria-label="Temporizador de produtividade">
+        <header class="card-header">
+          <div class="brand">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span>tempo</span>
+          </div>
+
+          <button
+            class="icon-button menu-button"
+            id="menuButton"
+            type="button"
+            aria-label="Abrir menu"
+            aria-haspopup="menu"
+            aria-expanded="false"
+          >
+            <span></span><span></span><span></span>
+          </button>
+
+          <div class="menu" id="menu" role="menu" hidden>
+            <button id="notificationsButton" type="button" role="menuitem">
+              <span class="menu-icon">◌</span>
+              <span id="notificationsLabel">Ativar notificações</span>
+            </button>
+            <button id="hideTimerButton" type="button" role="menuitem">
+              <span class="menu-icon">−</span>
+              Ocultar temporizador
+            </button>
+            <div class="menu-group">
+              <button id="sizeButton" type="button" role="menuitem" aria-expanded="false">
+                <span class="menu-icon">□</span>
+                Mudar tamanho
+                <span class="chevron">›</span>
+              </button>
+              <div class="size-options" id="sizeOptions" hidden>
+                <button type="button" data-size="compact">Compacto</button>
+                <button type="button" data-size="default">Padrão</button>
+                <button type="button" data-size="large">Grande</button>
+              </div>
+            </div>
+            <button id="moveButton" type="button" role="menuitem">
+              <span class="menu-icon">✣</span>
+              Mover
+            </button>
+            <div class="menu-separator"></div>
+            <button id="aboutButton" type="button" role="menuitem">
+              <span class="menu-icon">i</span>
+              Sobre o Tempo
+            </button>
+          </div>
+        </header>
+
+        <div class="timer-content" id="timerContent">
+          <div class="progress-wrap">
+            <svg class="progress-ring" viewBox="0 0 180 180" aria-hidden="true">
+              <circle class="progress-track" cx="90" cy="90" r="77"></circle>
+              <circle class="progress-value" id="progressCircle" cx="90" cy="90" r="77"></circle>
+            </svg>
+            <button class="play-button" id="playButton" type="button" aria-label="Iniciar temporizador">
+              <span class="play-icon" id="playIcon" aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <div class="time-controls">
+            <button class="adjust-button" id="decreaseButton" type="button" aria-label="Diminuir cinco minutos">−</button>
+            <button class="time-display" id="timeDisplay" type="button" aria-label="Reiniciar temporizador">25:00</button>
+            <button class="adjust-button" id="increaseButton" type="button" aria-label="Aumentar cinco minutos">+</button>
+          </div>
+
+          <div class="mode-switch" role="group" aria-label="Modo do temporizador">
+            <button class="mode-button active" type="button" data-mode="focus" aria-pressed="true">
+              <span class="mode-dot"></span>
+              Foco
+            </button>
+            <button class="mode-button" type="button" data-mode="break" aria-pressed="false">
+              Intervalo
+            </button>
+          </div>
+        </div>
+
+        <button class="restore-button" id="restoreButton" type="button" hidden>
+          Mostrar temporizador
+        </button>
+
+        <footer class="card-footer">
+          <span id="sessionLabel">Hora de se concentrar</span>
+          <span class="session-count" id="sessionCount">0 sessões</span>
+        </footer>
+      </section>
+    </main>
+
+    <dialog class="about-dialog" id="aboutDialog">
+      <button class="dialog-close" id="dialogClose" type="button" aria-label="Fechar">×</button>
+      <span class="dialog-mark" aria-hidden="true"></span>
+      <h2>Tempo</h2>
+      <p>Um temporizador simples para transformar intenção em progresso.</p>
+      <button class="dialog-action" id="dialogAction" type="button">Continuar focando</button>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
